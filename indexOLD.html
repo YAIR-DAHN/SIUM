@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הזמנת כבוד - סיום מסכת ברכות</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #d4af37;
+            --secondary-color: #333333;
+            --background-color: #1a1a1a;
+            --text-color: #ffffff;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Heebo', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--background-color);
+            min-height: 100vh;
+        }
+        .page-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 2rem 1rem;
+            box-sizing: border-box;
+        }
+        .container {
+            background: linear-gradient(145deg, #222 0%, #111 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            max-width: 90%;
+            width: 500px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .golden-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 10px solid transparent;
+            border-image: linear-gradient(45deg, var(--primary-color), #f2d264, var(--primary-color)) 1;
+            pointer-events: none;
+            border-radius: 10px;
+        }
+        .logo {
+            /* width: 90px; */
+            height: 90px;
+            margin: 0 auto 1rem;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 1.1em;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+        .decorated-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: var(--primary-color);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            margin: 1.5rem 0;
+            padding: 0.5rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            background: rgba(212, 175, 55, 0.1);
+            display: inline-block;
+        }
+        .event-details {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .event-details p {
+            margin: 0.5rem 0;
+            font-size: 1em;
+        }
+        #countdown {
+            font-size: 1.5em;
+            margin: 1rem 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        form {
+            margin-top: 1.5rem;
+        }
+        input, button {
+            margin: 0.5rem 0;
+            padding: 0.75rem;
+            width: 100%;
+            box-sizing: border-box;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        input:focus {
+            outline: none;
+            border-color: #f2d264;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        }
+        button {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #f2d264;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .participants-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .participants-input {
+            width: calc(50% - 0.25rem);
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem;
+                width: 95%;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .decorated-title {
+                font-size: 1.5em;
+            }
+            #countdown {
+                font-size: 1.2em;
+            }
+            .participants-container {
+                flex-direction: column;
+            }
+            .participants-input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="container">
+            <div class="golden-frame"></div>
+            <img src="./img/logo2.png" alt="לוגו" class="logo">
+            <h1>הזמנת כבוד</h1>
+            <p class="subtitle">בגילה וברינה באנו בזה להזמין את משפחות הלומדים<br>
+               בבית המדרש "אהל אברהמי" ועמם את תומכי התורה</p>
+            <div class="decorated-title">למעמד סיום מסכת ברכות</div>
+            <div class="event-details">
+                <p>אשר יתקיים אי"ה ברוב פאר והדר לכבודה של תורה</p>
+                <p><strong>ביום ראשון כ"ח באב תשפ"ד (1.9.2024) בשעה 20:00</strong></p>
+                <p><strong>באולם "אחיעזר" רח' יהודה הנשיא 32 אלעד</strong></p>
+            </div>
+            <p><strong>האירוע יתקיים בעוד</strong></p>
+            <div id="countdown"></div>
+            <p><strong>אנא אשרו הגעתכם</strong></p>
+            <form id="rsvpForm">
+                <input type="text" id="name" placeholder="שם מלא" required>
+                <div class="participants-container">
+                    <input type="number" id="menParticipants" placeholder="מספר גברים" required min="0" class="participants-input">
+                    <input type="number" id="womenParticipants" placeholder="מספר נשים" required min="0" class="participants-input">
+                </div>
+                <button type="submit">אישור הגעה</button>
+            </form>
+            <p>בברכת התורה<br>
+               הרב שמעון עטר והלומדים</p>
+        </div>
+    </div>
+
+    <script>
+        // ספירה לאחור
+        const countDownDate = new Date("Sep 1, 2024 20:00:00").getTime();
+        const countdownElement = document.getElementById("countdown");
+
+        const countdownTimer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `${days} ימים ${hours} שעות ${minutes} דקות ${seconds} שניות`;
+
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                countdownElement.innerHTML = "האירוע התחיל!";
+            }
+        }, 1000);
+
+        // טיפול באישור הגעה
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const menParticipants = document.getElementById('menParticipants').value;
+            const womenParticipants = document.getElementById('womenParticipants').value;
+            
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyj0jNH2dFZwo004PxntLuSMuQas87Rw28po1qd6vmAFrSwebOJ1heJ3pwet_dr8p2bLg/exec';
+
+            fetch(scriptURL, { 
+                method: 'POST', 
+                mode: 'no-cors',
+                body: JSON.stringify({ name, menParticipants, womenParticipants }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                console.log('Response:', response);
+                alert(`תודה ${name} על אישור ההגעה!\nגברים: ${menParticipants}, נשים: ${womenParticipants}`);
+                document.getElementById('rsvpForm').reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('אירעה שגיאה בשליחת הטופס. אנא נסו שנית מאוחר יותר.');
+            });
+        });
+    </script>
+</body>
+</html>

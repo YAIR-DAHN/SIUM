@@ -3,206 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הזמנת כבוד - סיום מסכת ברכות</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>הזמנה לסיום מסכת ברכות</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #d4af37;
-            --secondary-color: #333333;
-            --background-color: #1a1a1a;
-            --text-color: #ffffff;
-        }
-        body, html {
-            margin: 0;
-            padding: 0;
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&family=Suez+One&display=swap');
+
+        body {
             font-family: 'Heebo', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background: var(--background-color);
-            min-height: 100vh;
+            background-color: #f0e6d2;
+            color: #2c3e50;
         }
-        .page-wrapper {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            justify-content: flex-start;
-            align-items: center;
-            padding: 2rem 1rem;
-            box-sizing: border-box;
-        }
+
         .container {
-            background: linear-gradient(145deg, #222 0%, #111 100%);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            max-width: 90%;
-            width: 500px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            max-width: 800px;
         }
+
         .golden-frame {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 10px solid transparent;
-            border-image: linear-gradient(45deg, var(--primary-color), #f2d264, var(--primary-color)) 1;
-            pointer-events: none;
-            border-radius: 10px;
+            border: 8px solid transparent;
+            border-image: linear-gradient(to bottom right, #d4af37, #f9d77e, #d4af37) 1;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
         }
+
         .logo {
-            /* width: 90px; */
-            height: 90px;
-            margin: 0 auto 1rem;
+            max-width: 200px;
+            margin: 0 auto;
         }
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5em;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+
+        h1, .decorated-title {
+            font-family: 'Suez One', serif;
+            color: #8b4513;
         }
-        .subtitle {
-            font-size: 1.1em;
-            color: var(--text-color);
-            margin-bottom: 1.5rem;
-        }
-        .decorated-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8em;
-            color: var(--primary-color);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            margin: 1.5rem 0;
-            padding: 0.5rem;
-            border: 2px solid var(--primary-color);
-            border-radius: 10px;
-            background: rgba(212, 175, 55, 0.1);
-            display: inline-block;
-        }
+
         .event-details {
-            background: rgba(255, 255, 255, 0.05);
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-        .event-details p {
-            margin: 0.5rem 0;
-            font-size: 1em;
-        }
+
         #countdown {
-            font-size: 1.5em;
-            margin: 1rem 0;
-            color: var(--primary-color);
+            font-size: 1.5rem;
             font-weight: bold;
+            color: #d4af37;
         }
-        form {
-            margin-top: 1.5rem;
+
+        .btn-rsvp {
+            background-color: #8b4513;
+            color: white;
+            transition: all 0.3s ease;
         }
-        input, button {
-            margin: 0.5rem 0;
-            padding: 0.75rem;
+
+        .btn-rsvp:hover {
+            background-color: #d4af37;
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
             width: 100%;
-            box-sizing: border-box;
-            border: 2px solid var(--primary-color);
-            border-radius: 8px;
-            font-size: 1em;
-            transition: all 0.3s ease;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--text-color);
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
         }
-        input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
         }
-        input:focus {
-            outline: none;
-            border-color: #f2d264;
-            box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
-        }
-        button {
-            background-color: var(--primary-color);
-            color: var(--background-color);
-            border: none;
-            cursor: pointer;
+
+        .close {
+            color: #aaa;
+            float: left;
+            font-size: 28px;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
         }
-        button:hover {
-            background-color: #f2d264;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
-        .participants-container {
-            display: flex;
-            justify-content: space-between;
+
+        #thankYouModal {
+            background-color: #f0e6d2;
+            border: 4px solid #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
         }
-        .participants-input {
-            width: calc(50% - 0.25rem);
+
+        #thankYouModal h2 {
+            color: #8b4513;
         }
-        @media (max-width: 600px) {
-            .container {
-                padding: 1.5rem;
-                width: 95%;
-            }
-            h1 {
-                font-size: 2em;
-            }
-            .decorated-title {
-                font-size: 1.5em;
-            }
-            #countdown {
-                font-size: 1.2em;
-            }
-            .participants-container {
-                flex-direction: column;
-            }
-            .participants-input {
-                width: 100%;
-            }
-        }
+        .loader {
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #8b4513;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+        display: none;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
     </style>
 </head>
-<body>
-    <div class="page-wrapper">
-        <div class="container">
-            <div class="golden-frame"></div>
-            <img src="./img/logo2.png" alt="לוגו" class="logo">
-            <h1>הזמנת כבוד</h1>
-            <p class="subtitle">בגילה וברינה באנו בזה להזמין את משפחות הלומדים<br>
-               בבית המדרש "אהל אברהמי" ועמם את תומכי התורה</p>
-            <div class="decorated-title">למעמד סיום מסכת ברכות</div>
-            <div class="event-details">
-                <p>אשר יתקיים אי"ה ברוב פאר והדר לכבודה של תורה</p>
-                <p><strong>ביום ראשון כ"ח באב תשפ"ד (1.9.2024) בשעה 20:00</strong></p>
-                <p><strong>באולם "אחיעזר" רח' יהודה הנשיא 32 אלעד</strong></p>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="container mx-auto bg-white rounded-lg shadow-xl overflow-hidden golden-frame">
+        <!-- תוכן ההזמנה נשאר ללא שינוי -->
+        <div class="p-8 text-center">
+            <img src="./img/logo2.png" alt="לוגו" class="logo mb-6">
+            
+            <h1 class="text-4xl mb-6">הזמנת כבוד</h1>
+            
+            <p class="mb-6 text-lg">
+                בגילה וברינה באנו בזה להזמין את משפחות הלומדים<br>
+                בבית המדרש "אהל אברהמי" ועמם את תומכי התורה
+            </p>
+            
+            <div class="decorated-title text-3xl mb-6 font-bold">
+                למעמד סיום מסכת ברכות
             </div>
-            <p><strong>האירוע יתקיים בעוד</strong></p>
-            <div id="countdown"></div>
-            <p><strong>אנא אשרו הגעתכם</strong></p>
-            <form id="rsvpForm">
-                <input type="text" id="name" placeholder="שם מלא" required>
-                <div class="participants-container">
-                    <input type="number" id="menParticipants" placeholder="מספר גברים" required min="0" class="participants-input">
-                    <input type="number" id="womenParticipants" placeholder="מספר נשים" required min="0" class="participants-input">
+            
+            <div class="event-details p-6 mb-6">
+                <p class="mb-4">אשר יתקיים אי"ה ברוב פאר והדר לכבודה של תורה</p>
+                <p class="font-bold mb-2">ביום ראשון כ"ח באב תשפ"ד (1.9.2024) בשעה 20:00</p>
+                <p class="font-bold">באולם "אחיעזר" רח' יהודה הנשיא 32 אלעד</p>
+            </div>
+            
+            <p class="mb-2">האירוע יתקיים בעוד</p>
+            <div id="countdown" class="mb-6">
+                <span id="days"></span> ימים
+                <span id="hours"></span> שעות
+                <span id="minutes"></span> דקות
+                <span id="seconds"></span> שניות
+            </div>
+            
+            <button id="rsvpBtn" class="btn-rsvp px-6 py-2 rounded-full text-lg font-bold mb-6">
+                אנא אשרו הגעתכם
+            </button>
+            
+            <p class="text-lg">
+                בברכת התורה<br>
+                הרב שמעון עטר והלומדים
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal for RSVP -->
+    <div id="rsvpModal" class="modal">
+        <div class="modal-content rounded-lg">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl mb-4 text-center">אישור הגעה</h2>
+            <form id="rsvpForm" class="space-y-4">
+                <div>
+                    <label for="firstName" class="block mb-1">שם מלא:</label>
+                    <input type="text" id="firstName" name="firstName" required class="w-full p-2 border rounded">
                 </div>
-                <button type="submit">אישור הגעה</button>
+                <div>
+                    <label for="menCount" class="block mb-1">מספר משתתפים גברים:</label>
+                    <input type="number" id="menCount" name="menCount" min="0" value="0" class="w-full p-2 border rounded">
+                </div>
+                <div>
+                    <label for="womenCount" class="block mb-1">מספר משתתפים נשים:</label>
+                    <input type="number" id="womenCount" name="womenCount" min="0" value="0" class="w-full p-2 border rounded">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn-rsvp px-6 py-2 rounded-full text-lg font-bold">שלח אישור</button>
+                </div>
+                <div id="loader" class="loader"></div>
+
             </form>
-            <p>בברכת התורה<br>
-               הרב שמעון עטר והלומדים</p>
+        </div>
+    </div>
+
+    <!-- Thank You Modal -->
+    <div id="thankYouModal" class="modal">
+        <div class="modal-content rounded-lg text-center p-8">
+            <h2 class="text-3xl mb-4 font-bold">תודה רבה על שיתוף הפעולה</h2>
+            <p id="thankYouMessage" class="text-xl mb-6"></p>
+            <img src="./img/logo.png" alt="תמונת תודה" class="mx-auto mb-6 rounded-full">
+            <button id="closeThankYouBtn" class="btn-rsvp px-6 py-2 rounded-full text-lg font-bold">סגור</button>
         </div>
     </div>
 
     <script>
-        // ספירה לאחור
+        // Countdown Timer
         const countDownDate = new Date("Sep 1, 2024 20:00:00").getTime();
-        const countdownElement = document.getElementById("countdown");
 
-        const countdownTimer = setInterval(function() {
+        const x = setInterval(function() {
             const now = new Date().getTime();
             const distance = countDownDate - now;
 
@@ -211,41 +209,85 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            countdownElement.innerHTML = `${days} ימים ${hours} שעות ${minutes} דקות ${seconds} שניות`;
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
 
             if (distance < 0) {
-                clearInterval(countdownTimer);
-                countdownElement.innerHTML = "האירוע התחיל!";
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "האירוע התחיל!";
             }
         }, 1000);
 
-        // טיפול באישור הגעה
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const menParticipants = document.getElementById('menParticipants').value;
-            const womenParticipants = document.getElementById('womenParticipants').value;
-            
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyj0jNH2dFZwo004PxntLuSMuQas87Rw28po1qd6vmAFrSwebOJ1heJ3pwet_dr8p2bLg/exec';
+        // Modal functionality
+        const rsvpModal = document.getElementById("rsvpModal");
+        const thankYouModal = document.getElementById("thankYouModal");
+        const rsvpBtn = document.getElementById("rsvpBtn");
+        const closeBtn = document.getElementsByClassName("close")[0];
+        const closeThankYouBtn = document.getElementById("closeThankYouBtn");
+        const form = document.getElementById("rsvpForm");
+        const thankYouMessage = document.getElementById("thankYouMessage");
 
-            fetch(scriptURL, { 
-                method: 'POST', 
-                mode: 'no-cors',
-                body: JSON.stringify({ name, menParticipants, womenParticipants }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                console.log('Response:', response);
-                alert(`תודה ${name} על אישור ההגעה!\nגברים: ${menParticipants}, נשים: ${womenParticipants}`);
-                document.getElementById('rsvpForm').reset();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('אירעה שגיאה בשליחת הטופס. אנא נסו שנית מאוחר יותר.');
-            });
+        rsvpBtn.onclick = function() {
+            rsvpModal.style.display = "block";
+        }
+
+        closeBtn.onclick = function() {
+            rsvpModal.style.display = "none";
+        }
+
+        closeThankYouBtn.onclick = function() {
+            thankYouModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == rsvpModal) {
+                rsvpModal.style.display = "none";
+            }
+            if (event.target == thankYouModal) {
+                thankYouModal.style.display = "none";
+            }
+        }
+
+        form.onsubmit = async function(e) {
+        e.preventDefault();
+        const name = document.getElementById('firstName').value;
+        const menParticipants = document.getElementById('menCount').value;
+        const womenParticipants = document.getElementById('womenCount').value;
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyj0jNH2dFZwo004PxntLuSMuQas87Rw28po1qd6vmAFrSwebOJ1heJ3pwet_dr8p2bLg/exec';
+
+        // הצג את אנימציית הטעינה
+        document.getElementById('loader').style.display = 'block';
+        // הסתר את כפתור השליחה
+        document.querySelector('button[type="submit"]').style.display = 'none';
+
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, menParticipants, womenParticipants }),
+        })
+        .then(response => {
+            const totalParticipants = parseInt(menParticipants) + parseInt(womenParticipants);
+            thankYouMessage.innerHTML = `${name}, מחכים לראותך!<br>אישרת הגעה עבור ${totalParticipants} משתתפים.`;
+            rsvpModal.style.display = "none";
+            thankYouModal.style.display = "block";
+        })
+        .catch(error => {
+            console.error('שגיאה:', error);
+            alert('אירעה שגיאה בעת שליחת הטופס. אנא נסה שוב מאוחר יותר.');
+        })
+        .finally(() => {
+            // הסתר את אנימציית הטעינה
+            document.getElementById('loader').style.display = 'none';
+            // הצג מחדש את כפתור השליחה
+            document.querySelector('button[type="submit"]').style.display = 'block';
         });
+    }
     </script>
 </body>
 </html>
